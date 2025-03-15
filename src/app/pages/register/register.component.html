@@ -1,0 +1,215 @@
+<main class="bg-gray-300">
+    <h2 class="text-center text-3xl text-blue-800 font-semibold capitalize">linked posts</h2>
+    <section class="w-[50%] bg-white mx-auto my-5 border rounded-md shadow-lg ">
+        <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="p-3">
+            <div class="mb-2">
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    name
+                </label>
+                <input formControlName="name" type="text" id="name" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                @let nameControl=registerForm.get('name');
+                @if(nameControl?.errors&& nameControl?.touched){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (registerForm.get('name')?.getError('required')) {
+                                <li class="capitalize">The name is required</li>
+    
+                              } 
+                              @else if (nameControl?.getError('minlength')) {
+                                <li>The name must be at least 3 characters long.</li>
+    
+                              }
+                              @else {
+                                <li>The name must not exceed 20 characters.</li>
+    
+                              }
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+            <div class="mb-2">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Email
+                </label>
+                <input formControlName="email" type="email" id="email" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                @let emailControl=registerForm.get('email');
+                @if(emailControl?.errors&& emailControl?.touched){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (emailControl?.getError('required')) {
+                                <li class="capitalize">The name is required</li>
+    
+                              } 
+                              @else {
+                                <li>The Email is NOT Valid.</li>
+    
+                              }
+                             
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+            <div class="mb-2">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    password
+                </label>
+                <input formControlName="password" type="password" id="password" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                @let passwordControl=registerForm.get('password');
+                @if(passwordControl?.errors&& passwordControl?.touched){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (passwordControl?.getError('required')) {
+                                <li class="capitalize">The password is required</li>
+    
+                              } 
+                              @else {
+                                <li>The password must start with an uppercase letterthen small letter then Any number less than 10 then any chare of(#?!$%^&*-) and be followed by at least 8 alphanumeric characters letters numbers or underscores.</li>
+    
+                              }
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+            <div class="mb-2">
+                <label for="rePassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    rePassword
+                </label>
+                <input formControlName="rePassword" type="password" id="rePassword" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                @let rePasswordControl=registerForm.get('rePassword');
+                @if(rePasswordControl?.errors&& rePasswordControl?.touched){ 
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (rePasswordControl?.getError('required')) {
+                                <li class="capitalize">The name is required</li>
+    
+                              } 
+                              @else{
+                                <li>The rePassword confirmation is incorrect </li>
+    
+                              }
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+
+            <div class="mb-2">
+                <label for="dateOfBirth" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    dateOfBirth
+                </label>
+                
+                <input formControlName="dateOfBirth" datepicker datepicker-format="mm/dd/yyyy" datepicker-max-date="12/31/2007" type="date"  id="dateOfBirth" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                @let dateOfBirthControl=registerForm.get('dateOfBirth');
+                @if(dateOfBirthControl?.errors&& dateOfBirthControl?.touched){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (dateOfBirthControl?.getError('required')) {
+                                <li class="capitalize">The Date Of Birth is required</li>
+    
+                              } 
+
+                              @else{
+                                <li>The Date Of Birth is Not Valid.</li>
+    
+                              }
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+            <div class="mb-2">
+               <div class="flex items-center justify-start">
+                <div>
+                    
+                    <input formControlName="gender" type="radio" id="female" value="female" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                   <label for="female" class=" me-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        female
+                    </label>
+                </div>
+                <div>
+                    
+                    <input formControlName="gender" type="radio" id="male" value="male" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  
+                    <label for="male" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        male
+                    </label>
+                </div>
+
+                 </div>
+               
+                @let genderControl=registerForm.get('gender');
+                @if(genderControl?.errors&& genderControl?.touched){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (genderControl?.getError('required')) {
+                                <li class="capitalize">The gender is required</li>
+    
+                              } 
+
+                             
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+            <button [disabled]="registerForm.invalid"  type="submit" class="mainButton">
+               SingUp 
+               @if (loading()) {
+                <i class="fas fa-spin fa-spinner"></i>
+                }
+              </button>
+        </form>
+    </section>
+    <!-- <div class="mb-2">
+
+      
+      <div class="relative max-w-sm">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+            </svg>
+        </div>
+        <input id="datepicker-format" datepicker datepicker-format="mm-dd-yyyy" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+      </div>
+
+     </div> -->
+</main>

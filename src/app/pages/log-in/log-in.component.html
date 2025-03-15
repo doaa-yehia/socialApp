@@ -1,0 +1,81 @@
+<main class="bg-gray-300">
+    <h2 class="text-center text-3xl text-blue-800 font-semibold capitalize">login now</h2>
+    <section class="w-[50%] bg-white mx-auto my-5 border rounded-md shadow-lg ">
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="p-3">
+           
+            <div class="mb-2">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Email
+                </label>
+                <input formControlName="email" type="email" id="email" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                @let emailControl=loginForm.get('email');
+                @if(emailControl?.errors&& emailControl?.touched){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (emailControl?.getError('required')) {
+                                <li class="capitalize">The name is required</li>
+    
+                              } 
+                              @else {
+                                <li>The Email is NOT Valid.</li>
+    
+                              }
+                             
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+            <div class="mb-2">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    password
+                </label>
+                <input formControlName="password" type="password" id="password" class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                @let passwordControl=loginForm.get('password');
+                @if(passwordControl?.errors&& passwordControl?.touched){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                              @if (passwordControl?.getError('required')) {
+                                <li class="capitalize">The password is required</li>
+    
+                              } 
+                              @else {
+                                <li>The password must start with an uppercase letterthen small letter then Any number less than 10 then any chare of(#?!$%^&*-) and be followed by at least 8 alphanumeric characters letters numbers or underscores.</li>
+    
+                              }
+                          </ul>
+                        </div>
+                      </div>
+                }
+                
+            </div>
+         
+
+           
+       
+            <button [disabled]="loginForm.invalid"  type="submit" class="mainButton">
+               SingIn 
+               @if (loading()) {
+                <i class="fas fa-spin fa-spinner"></i>
+                }
+              </button>
+              <p>not register? 
+                <button class="text-blue-700 font-medium" routerLink="/register" >
+                    creat account
+                </button>
+              </p>
+        </form>
+    </section> 
+
+</main>

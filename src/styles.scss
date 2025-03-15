@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'ngx-toastr/toastr';
+
+@layer components{
+    .mainButton{
+        @apply disabled:bg-gray-400 text-white bg-blue-600 rounded-md py-2 px-4  border hover:bg-blue-700 transition-colors duration-500;
+    }
+   
+}
+
+body{
+    background-color: rgba(128, 128, 128, 0.082);
+}
