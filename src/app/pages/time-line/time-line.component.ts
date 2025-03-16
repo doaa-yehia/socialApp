@@ -3,19 +3,34 @@ import { PostsService } from '../../core/services/posts/posts.service';
 import { IPost } from '../../shared/interfaces/ipost';
 import { DatePipe } from '@angular/common';
 import { CommentsComponent } from "../../shared/Ui/comments/comments.component";
+import { UsersService } from '../../core/services/users/users.service';
+import { IUser } from '../../shared/interfaces/iuser';
+import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-time-line',
-  imports: [DatePipe, CommentsComponent],
+  imports: [DatePipe, CommentsComponent,FormsModule],
   templateUrl: './time-line.component.html',
   styleUrl: './time-line.component.scss'
 })
 export class TimeLineComponent implements OnInit {
   
   private readonly postsService=inject(PostsService);
+  private readonly usersService=inject(UsersService);
+  private readonly toastrService=inject(ToastrService);
+  
+  
   postList:WritableSignal<IPost[]>=signal([]);
+  userInfo:WritableSignal<IUser>=signal({} as IUser);
+  content:WritableSignal<string>=signal(" ");
+  // savedFile:WritableSignal<File>=signal( {} as File);
+  savedFile!:File;
+  isModelOpen = signal(false);
+
   ngOnInit(): void {
     this.getPosts();
+    this.getdata();
   }
 
   getPosts():void{
@@ -26,4 +41,43 @@ export class TimeLineComponent implements OnInit {
       }
     });
   }
+  getdata():void{
+    this.usersService.getuserData().subscribe({
+      next:(res)=>{
+        this.userInfo.set(res.user)
+        
+      }
+    })
+  }
+  toggleModel() {
+    this.isModelOpen.set(!this.isModelOpen());
+  }
+
+  changeImage(e:Event):void{
+    const input=e.target as HTMLInputElement;
+    if (input.files && input.files.length>0) {
+      this.savedFile=input.files[0];
+    }
+  }
+
+  creatPost():void{
+    // creat formData
+    const formData=new FormData();
+    formData.append('body',this.content());
+    formData.append("image",this.savedFile);
+
+    // send Data to API
+    this.postsService.creatPosts(formData).subscribe({
+      next:(res)=>{
+        if (res.message==='success') {
+
+          this.toastrService.success(res.message,'socialApp');
+
+          this.getPosts();
+
+        }
+      }
+    })
+  }
+ 
 }
