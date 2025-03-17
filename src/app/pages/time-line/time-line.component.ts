@@ -36,7 +36,7 @@ export class TimeLineComponent implements OnInit {
   getPosts():void{
     this.postsService.getAllPosts().subscribe({
       next:(res)=>{
-        this.postList.set(res.posts);
+        this.postList.set(res.posts.reverse());
         console.log(this.postList());
       }
     });
