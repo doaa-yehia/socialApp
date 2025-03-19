@@ -1,13 +1,13 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsersService } from '../../core/services/users/users.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-log-in',
   imports: [ReactiveFormsModule,
-            
+            RouterLink
   ],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.scss'
