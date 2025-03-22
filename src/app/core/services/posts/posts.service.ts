@@ -15,7 +15,7 @@ export class PostsService {
   }
 
   getAllPosts():Observable<any>{
-    return this.httpClient.get(environment.baseUrl+`/posts?page=89`);
+    return this.httpClient.get(environment.baseUrl+`/posts?page=90`);
   }
 
   getMyPosts():Observable<any>{
