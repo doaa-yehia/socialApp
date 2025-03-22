@@ -23,7 +23,7 @@ export class TimeLineComponent implements OnInit {
   
   postList:WritableSignal<IPost[]>=signal([]);
   userInfo:WritableSignal<IUser>=signal({} as IUser);
-  content:WritableSignal<string>=signal(" ");
+  content:WritableSignal<string>=signal("");
   // savedFile:WritableSignal<File>=signal( {} as File);
   savedFile!:File;
   isModelOpen = signal(false);
@@ -63,21 +63,45 @@ export class TimeLineComponent implements OnInit {
   creatPost():void{
     // creat formData
     const formData=new FormData();
-    formData.append('body',this.content());
-    formData.append("image",this.savedFile);
+    if(!(this.content()==='')&& this.savedFile){
+      formData.append('body',this.content());
+      formData.append("image",this.savedFile);
 
-    // send Data to API
-    this.postsService.creatPosts(formData).subscribe({
-      next:(res)=>{
-        if (res.message==='success') {
+      this.sendPost(formData);
+      // formData.set('body', '' );
 
-          this.toastrService.success(res.message,'socialApp');
+    }
+    else if (!(this.content()==='')) {
+      formData.append('body',this.content());
+      this.sendPost(formData);
+      // formData.set('body', '' );
+    }
+    else if (this.savedFile) {
+      formData.append("image",this.savedFile);
+      this.sendPost(formData);
+    }
+    else{
+      this.toastrService.error( 'you must inter content or file' ,'socialApp');
 
-          this.getPosts();
+    }
+ 
+    
+  
+  }
 
-        }
-      }
-    })
+  sendPost(data:FormData):void{
+           // send Data to API
+           this.postsService.creatPosts(data).subscribe({
+            next:(res)=>{
+              if (res.message==='success') {
+      
+                this.toastrService.success(res.message,'socialApp');
+      
+                this.getPosts();
+      
+              }
+            }
+          })
   }
  
 }
